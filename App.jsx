@@ -1,23 +1,37 @@
 import React, {useEffect} from 'react';
 // import { NavigationContainer } from '@react-navigation/native';
-import Home from './screens/Home/Home';
 import 'react-native-gesture-handler';
-import BottomTab from './BottomTabs/BottomTab';
-import {View, Text, ScrollView, StatusBar, SafeAreaView, PermissionsAndroid} from 'react-native';
+import BottomTab from './src/BottomTabs/BottomTab';
+import {
+  View,
+  Text,
+  ScrollView,
+  StatusBar,
+  SafeAreaView,
+  PermissionsAndroid,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {storage} from './Storage/Storage';
-import { Images } from './Controller';
+import {storage} from './src/Storage/Storage';
+import {Images} from './src/Controller';
+import Auth from './screens/Auth/Auth';
+import {getMkvData} from './src/Storage/StorageFun';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { useAuthStore } from './src/Store';
 const App = () => {
+  const {loggedIn}=useAuthStore()
   const profile = {
     userName: 'Deepak Jain',
     Bio: '',
-    Image:null,
+    userId:"",
+    Image: null,
   };
   const Posts = [];
+  const loggedInUser = false;
   useEffect(() => {
     if (storage.getAllKeys().length === 0) {
       storage.set('userDetails', JSON.stringify(profile));
       storage.set('Posts', JSON.stringify(Posts));
+      storage.set('loggedInUser', loggedInUser);
     }
   }, []);
   useEffect(() => {
@@ -30,12 +44,22 @@ const App = () => {
         buttonNegative: 'Cancel',
         buttonPositive: 'OK',
       },
-    );    
+    );
   }, []);
+  const Stack = createNativeStackNavigator();
+
   return (
     <>
       <NavigationContainer>
         <BottomTab />
+        {/* {getMkvData('loggedInUser') ? (
+        ) : (
+          <Stack.Navigator initialRouteName="login">
+            <Stack.Screen options={{
+              headerShown:false
+            }} name="login" component={Auth} />
+          </Stack.Navigator>
+        )} */}
       </NavigationContainer>
       {/* <SafeAreaView style={{backgroundColor:"white"}}>
    <StatusBar  animated={true} backgroundColor={"blue"} barStyle={"default"}/>

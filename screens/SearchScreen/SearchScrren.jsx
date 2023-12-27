@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState} from 'react';
-import {Images} from '../../Controller';
+import { Images } from '../../src/Controller';
 
 const SearchScrren = () => {
   const [followed, setFollowd] = useState([]);

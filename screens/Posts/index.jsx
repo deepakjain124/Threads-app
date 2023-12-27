@@ -1,11 +1,11 @@
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import Close from 'react-native-vector-icons/AntDesign';
-import {getMkvData, setMkvData} from '../../Storage/StorageFun';
-import {Images} from '../../Controller';
 import PaperClick from 'react-native-vector-icons/SimpleLineIcons';
 import CloseCircle from 'react-native-vector-icons/AntDesign';
 import {launchImageLibrary} from 'react-native-image-picker';
+import { getMkvData, setMkvData } from '../../src/Storage/StorageFun';
+import { Images } from '../../src/Controller';
 const Posts = ({navigation}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [message, setMessage] = useState(null);
@@ -37,6 +37,8 @@ const Posts = ({navigation}) => {
     const getAllPost=getMkvData("Posts")
     let tempData=[...getAllPost,data]
     setMkvData('Posts', tempData);
+    setSelectedImage("")
+    setMessage("")
     navigation.goBack();
   };
   return (

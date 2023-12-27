@@ -8,16 +8,18 @@ import {
 } from 'react-native';
 import React, { useState} from 'react';
 import {Modal} from 'react-native';
-import {Images} from '../../Controller';
 import Lock from 'react-native-vector-icons/Ionicons';
 import Close from 'react-native-vector-icons/AntDesign';
 import EditBioModal from './EditBioModal';
 import ProfileBottom from './ProfileBottom';
-import { getMkvData } from '../../Storage/StorageFun';
+import { getMkvData } from '../../src/Storage/StorageFun';
+import { Images } from '../../src/Controller';
+import { Switch } from 'react-native-ui-lib';
 
 const EditProfileModal = ({setOpenEditProfile, openEditProfile}) => {
   const [openBioModal, setOpenBioModal] = useState(false);
   const [openProfileBottomSheet, setOpenProfileBottom] = useState(false);
+  const[isPrivate,setIsPrivate]=useState(false)
 
   return (
     <>
@@ -51,14 +53,13 @@ const EditProfileModal = ({setOpenEditProfile, openEditProfile}) => {
                     <View className="border-b border-gray-300 py-2">
                       <Text className="text-black text-sm font-bold">Name</Text>
                       <Text className="text-black mt-2">
-                        <Lock name="lock-closed-outline" size={18} /> Deepak
-                        Jain (_beingdeepakjain_)
+                        <Lock name="lock-closed-outline" size={18} /> {getMkvData("userDetails").userName}({getMkvData("userDetails").userId})
                       </Text>
                     </View>
                     <TouchableOpacity onPress={() => setOpenProfileBottom(true)}>
                       <Image
                         source={!getMkvData("userDetails")?.Image?Images.DefaultImage:{uri:getMkvData("userDetails")?.Image}}
-                        className="w-14 h-14 rounded-full"
+                        className="w-20 h-20 rounded-full"
                       />
                     </TouchableOpacity>
                   </View>
@@ -80,9 +81,7 @@ const EditProfileModal = ({setOpenEditProfile, openEditProfile}) => {
                     <Text className="text-black font-bold ">
                       Private profile
                     </Text>
-                    <Text className="text-black   leading-5">
-                      Private Profile
-                    </Text>
+                    <Switch value={isPrivate} onColor={"black"} onValueChange={(val) => setIsPrivate(val)}/>
                   </View>
                 </View>
               </View>

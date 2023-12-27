@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
-import { getMkvData, setMkvData } from '../../Storage/StorageFun';
+import { getMkvData, setMkvData } from '../../src/Storage/StorageFun';
 const ProfileBottom = ({setOPen, isOpen}) => {
   const [selectedImage, setSelectedImage] = useState(null);
 

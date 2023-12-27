@@ -9,14 +9,14 @@ import {
   RefreshControl,
 } from 'react-native';
 import React, {useState} from 'react';
-import {Images} from '../../Controller';
 import Icon from 'react-native-vector-icons/Entypo';
 import Heart from 'react-native-vector-icons/Feather';
 import Message from 'react-native-vector-icons/Feather';
 import Share from 'react-native-vector-icons/Octicons';
 import Threads from 'react-native-vector-icons/FontAwesome6';
 import OptionModal from './OptionModal';
-import { getMkvData } from '../../Storage/StorageFun';
+import { getMkvData } from '../../src/Storage/StorageFun';
+import { Images } from '../../src/Controller';
 
 const Home = () => {
   const [color, setColor] = useState('black'); // Initial color state

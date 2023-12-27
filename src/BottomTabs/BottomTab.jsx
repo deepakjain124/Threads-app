@@ -1,17 +1,18 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home/Home';
-import Setting from '../screens/Setting';
 import HomeIcon from 'react-native-vector-icons/Octicons';
 import SearchIcon from 'react-native-vector-icons/Ionicons';
-import HeartIcon from 'react-native-vector-icons/AntDesign';
+import AddUser from 'react-native-vector-icons/AntDesign';
 import ProfileIcon from 'react-native-vector-icons/SimpleLineIcons';
 import SharePost from 'react-native-vector-icons/Feather';
-import SearchScrren from '../screens/SearchScreen/SearchScrren';
-import Likes from '../screens/Likes/Index';
-import Profile from '../screens/Profile';
-import Posts from '../screens/Posts';
+import SearchScrren from '../../screens/SearchScreen/SearchScrren';
+import Home from '../../screens/Home/Home';
+import Posts from '../../screens/Posts';
+import Likes from '../../screens/Likes/Index';
+import Profile from '../../screens/Profile';
+import AddContact from '../../navigation/AddContact';
+
 
 const BottomTab = () => {
   const Tab = createBottomTabNavigator();
@@ -96,7 +97,7 @@ const BottomTab = () => {
         component={Posts}
       />
       <Tab.Screen
-        name="Likes"
+        name="contacts"
         options={{
           headerShown: false,
           tabBarShowLabel: false,
@@ -108,9 +109,9 @@ const BottomTab = () => {
                   padding: 8,
                   borderRadius: 50,
                 }}>
-                <HeartIcon
+                <AddUser
                   className="bg-red-400"
-                  name="hearto"
+                  name="adduser"
                   size={20}
                   color={focused ? 'white' : 'black'}
                 />
@@ -118,7 +119,7 @@ const BottomTab = () => {
             );
           },
         }}
-        component={Likes}
+        component={AddContact}
       />
       <Tab.Screen
         name="Profile"
@@ -145,6 +146,7 @@ const BottomTab = () => {
         }}
         component={Profile}
       />
+
     </Tab.Navigator>
   );
 };

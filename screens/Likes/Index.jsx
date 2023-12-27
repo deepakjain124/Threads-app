@@ -1,7 +1,7 @@
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import React, {useState} from 'react';
 import { ScrollView } from 'react-native';
-import { Images } from '../../Controller';
+import { Images } from '../../src/Controller';
 
 const Likes = () => {
   const [selected, setSelected] = useState('1');

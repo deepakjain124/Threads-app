@@ -9,7 +9,7 @@ import React, {useEffect, useState} from 'react';
 import Close from 'react-native-vector-icons/AntDesign';
 import Check from 'react-native-vector-icons/AntDesign';
 import CloseCircle from 'react-native-vector-icons/AntDesign';
-import { getMkvData, setMkvData } from '../../Storage/StorageFun';
+import { getMkvData, setMkvData } from '../../src/Storage/StorageFun';
 
 const EditBioModal = ({openBioModal, setOpenBioModal}) => {
   const [bio, setBio] = useState('');
